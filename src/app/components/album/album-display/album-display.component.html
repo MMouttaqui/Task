@@ -1,0 +1,57 @@
+<!-- <p>album-display works!</p> -->
+<h1>User Album Overview</h1>
+<br />
+<a routerLink="add-album" class="btn btn-sm btn-success mb-3">Add Album</a>
+
+<div class="container-fluid">
+  <table class="table table-bordered">
+    <thead>
+      <tr class="header">
+        <th class="col-xs-1">#</th>
+        <th class="col-xs-1">Title</th>
+        <th class="col-xs-3">Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let album of albums
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page
+                };
+          let idn = index
+        "
+      >
+        <td>{{ album.id }}</td>
+        <td>{{ album.title }}</td>
+        <td>
+          <a
+          [routerLink]="['edit-album']"
+          [queryParams]="{albumId: album.id }"
+          class="btn btn-sm btn-primary mx-2 mt-auto align-self-end"
+          >Edit Album</a
+        >
+          <a
+            [routerLink]="['photos']"
+            [queryParams]="{albumId: album.id }"
+            class="btn btn-sm btn-primary mx-2 mt-auto align-self-end"
+            >Photos</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="justify-content-center">
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="page = $event"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+  <app-back-button></app-back-button>
+
+</div>

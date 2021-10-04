@@ -1,0 +1,29 @@
+<!-- <p>create-edit-album works!</p> -->
+<!-- <p>post-create works!</p> -->
+<h1 *ngIf="isAddMode">Add Album</h1>
+<h1 *ngIf="!isAddMode">Edit Album</h1>
+
+<form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+  <div class="card m-3">
+    <div class="card-body">
+      <div class="form-group form-inline text-left">
+        <label class="mr-4">Title: </label>
+        <input
+          class="form-control col-10"
+          formControlName="title"
+          #titleAlbum
+        />
+      </div>
+      <div class="form-group mt-2">
+        <a  class="btn btn-primary">
+          <!-- [disabled]="loading"<span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span> -->
+          Save
+          </a>
+        <app-back-button></app-back-button>
+      </div>
+    </div>
+  </div>
+</form>

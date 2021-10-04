@@ -1,0 +1,41 @@
+<!-- <p>photo works!</p> -->
+<h1>Photos</h1>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+      <thead>
+        <tr class="header">
+            <th class="col-xs-1">#</th>
+            <th class="col-xs-1">Title</th>
+            <th class="col-xs-1">album</th>
+            <th class="col-xs-1">ThumbnailUrl</th>
+            <th class="col-xs-1">Url</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let photo of photos| paginate: {
+          itemsPerPage: pageSize,
+          currentPage: page
+         }; let idn = index">
+            <td>{{ photo.id}}</td>
+            <td>{{ photo.title}}</td>
+            <td>{{ photo.albumId}}</td>
+            <td>
+              <img src="{{photo.thumbnailUrl}}">
+            </td>
+            <td>{{ photo.url}}</td>
+        </tr>
+      </tbody>
+  </table>
+  <div class="justify-content-center">
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="page=$event">
+      </pagination-controls>
+    </div>
+  </div>
+  <app-back-button></app-back-button>
+</div>
